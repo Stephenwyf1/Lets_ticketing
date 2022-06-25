@@ -8,6 +8,8 @@ import {ExpirationCompleteListener} from "./events/listeners/ExpirationCompleteL
 import {PaymentCreatedListener} from "./events/listeners/PaymentCreatedListener";
 
 const start = async () => {
+
+    console.log("order starting")
     if(!process.env.JWT_SECRET)
         throw new Error('Secret doesn\'t exist');
 
