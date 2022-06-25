@@ -23,10 +23,10 @@ beforeEach(async ()=> {
     }
 });
 
-afterAll( async ()=>{
-    await mongo.stop();
-    await mongoose.connection.close();
-})
+// afterAll( async ()=>{
+//     await mongo.stop();
+//     await mongoose.connection.close();
+// })
 
 global.signin = () => {
     // Build a JWT payload. {id,email}
