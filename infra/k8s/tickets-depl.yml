@@ -20,10 +20,11 @@ spec:
               value: 'mongodb://tickets-mongo-srv:27017/tickets'
 
             - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_SECRET
+              value: "wyf"
+#              valueFrom:
+#                secretKeyRef:
+#                  name: jwt-secret
+#                  key: JWT_SECRET
 
             - name: Nats_Cluster_Id
               value: 'ticketing'

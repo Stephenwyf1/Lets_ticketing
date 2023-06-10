@@ -14,7 +14,7 @@ const start = async () => {
     if(!process.env.Mongo_URI){
         throw new Error("Mongo Uri must be defined");
     }
-    if(!process.env.Nats_Client_Id){
+    if (!process.env.Nats_Client_Id){
         throw new Error("Nats Client Id  must be defined");
     }
     if(!process.env.Nats_URL){

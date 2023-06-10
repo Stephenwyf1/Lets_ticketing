@@ -7,7 +7,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent>{
 
     queueGroupName = queueGroupName;
     subject: Subjects.OrderCreated = Subjects.OrderCreated;
-
+    
     async onMessage(data: OrderCreatedEvent["data"], msg: Message){
 
         const expire = new Date(data.expiresAt).getTime();
@@ -16,7 +16,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent>{
 
         await expirationQueue.add(
             {orderId:data.id},
-            // {delay: expire - now}
+            {delay: expire - now}
         );
 
         msg.ack();

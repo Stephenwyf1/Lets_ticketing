@@ -8,7 +8,7 @@ import {Payment} from "../../models/payment";
 
 it('returns a 404 when purchasing an order that does not exist', async () => {
   await request(app)
-    .post('/api/payments')
+    .post('/api/payments/create')
     .set('Cookie', global.signin())
     .send({
       token: 'asldkfj',
@@ -28,7 +28,7 @@ it('returns a 401 when purchasing an order that doesnt belong to the user', asyn
   await order.save();
 
   await request(app)
-    .post('/api/payments')
+    .post('/api/payments/create')
     .set('Cookie', global.signin())
     .send({
       token: 'asldkfj',
@@ -49,7 +49,7 @@ it('returns a 400 when purchasing a cancelled order', async () => {
   await order.save();
 
   await request(app)
-    .post('/api/payments')
+    .post('/api/payments/create')
     .set('Cookie', global.signin(userId))
     .send({
       orderId: order.id,
@@ -71,7 +71,7 @@ it('returns a 201 with valid input', async () => {
     await order.save();
 
     await request(app)
-        .post('/api/payments')
+        .post('/api/payments/create')
         .set('Cookie', global.signin(userId))
         .send({
             orderId: order.id,
