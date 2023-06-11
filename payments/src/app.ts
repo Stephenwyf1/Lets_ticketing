@@ -4,6 +4,7 @@ import {json} from 'body-parser';
 import cookieSession from "cookie-session";
 import {errorHandler,NotFoundError,currentUserVerifier} from '@wyf-ticketing/wyf';
 import {createChargeRouter} from './routers/create'
+import {monitorRouter} from "./routers/monitor";
 
 const app = express();
 app.set('trust proxy', true); // ?
@@ -17,9 +18,11 @@ app.use(cookieSession({
 
 app.use(currentUserVerifier);
 app.use(createChargeRouter);
+app.use(monitorRouter);
 
 app.get('*',async (req,res)=>{
     throw new NotFoundError('Not Found');
 });
+
 app.use(errorHandler);
 export {app};

@@ -18,13 +18,10 @@ spec:
           env:
             - name: Mongo_URI
               value: 'mongodb://payments-mongo-srv:27017/payments'
-
             - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_SECRET
-
+              value: "wyf"
+            - name: STRIPE_SECRET
+              value: "sk_test_51NHWuYAojp6hb4dAfhynJylsE97bMY97DqYKgTij8sPkUGJt9kbavyWtIPlAVoBQ312emRSAto8wElkytaEK0EBE00immrYfN5"
             - name: Nats_Cluster_Id
               value: 'ticketing'
             - name: Nats_URL
@@ -34,11 +31,6 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
 
-            - name: STRIPE_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: stripe-secret
-                  key: STRIPE_SECRET
 ---
 apiVersion: v1
 kind: Service

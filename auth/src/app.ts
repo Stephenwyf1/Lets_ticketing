@@ -22,9 +22,10 @@ app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signOutRouter);
 app.use(signUpRouter);
+app.use(errorHandler);
 
 app.get('*',async (req,res)=>{
     throw new NotFoundError('Not Found');
 });
-app.use(errorHandler);
+
 export {app};

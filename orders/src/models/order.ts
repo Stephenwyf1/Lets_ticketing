@@ -33,16 +33,17 @@ const orderSchema = new mongoose.Schema(
         status: {
             type: String,
             required: true,
-            enum: Object.values(OrderStatus),
+            enum: OrderStatus,
             default: OrderStatus.Created
-        },
-        expiresAt: {
-            type: mongoose.Schema.Types.Date
         },
         ticket: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Ticket'
-        }
+        },
+        expiresAt: {
+            type: mongoose.Schema.Types.Date,
+            required: true
+        },
     },
     {
         toJSON: {

@@ -19,10 +19,11 @@ spec:
             - name: Mongo_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: jwt-secret
-                  key: JWT_SECRET
+              value: "wyf"
+#              valueFrom:
+#                secretKeyRef:
+#                  name: jwt-secret
+#                  key: JWT_SECRET
 #          image: us.gcr.io/vaulted-journal-350606/auth
 ---
 apiVersion: v1

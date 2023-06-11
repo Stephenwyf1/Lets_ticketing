@@ -9,11 +9,10 @@ import {OrderCreatedPublisher} from "../events/publishers/OrderCreatedPublisher"
 
 const router = express.Router();
 
-const EXPIRATION_WINDOW_SECONDS = 30;
+const EXPIRATION_WINDOW_SECONDS = 300;
 
 router.post(
     '/api/orders',
-    requireAuth,
     [
         body('ticketId')
             .not()
@@ -22,6 +21,7 @@ router.post(
             .custom((input:string)=>mongoose.Types.ObjectId.isValid(input))
             .withMessage('TicketId must be valid')
     ],
+    requireAuth,
     requestValidator,
     async (req:Request,res:Response)=>{
         const {ticketId} = req.body;
@@ -33,7 +33,7 @@ router.post(
             throw new NotFoundError("the ticket you want doesn\'t exist");
         }
 
-        // Make Sure this ticket is not been reserved by other order
+        // Make Sure this ticket is not being reserved by other order
         // Run query to look at all orders. Find an order where the ticket
         // is the ticket we just found and the order status is not cancelled.
         const isReserved = await ticket.isReserved();
